@@ -10,6 +10,10 @@ cp -f hull.stl constant/triSurface/
 
 runApplication blockMesh
 
+# z-dir refinement for free surface
+runApplication topoSet -dict system/topoSetDict
+runApplication refineMesh -dict system/refineMeshDict -overwrite
+
 runApplication surfaceFeatureExtract
 
 runApplication decomposePar
