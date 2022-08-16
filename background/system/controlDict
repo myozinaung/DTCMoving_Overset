@@ -1,0 +1,87 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2206                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      controlDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+libs            (overset rigidBodyDynamics);
+
+application     overInterDyMFoam;
+
+startFrom       latestTime;
+
+startTime       0;
+
+// stopAt          endTime;
+stopAt          writeNow;
+// stopAt          nextWrite;
+
+endTime         60;
+
+deltaT          1e-5;
+
+writeControl    adjustableRunTime;
+
+writeInterval   5;
+
+purgeWrite      0;
+
+writeFormat     binary;
+
+writePrecision  8;
+
+writeCompression off;
+
+timeFormat      general;
+
+timePrecision   8;
+
+runTimeModifiable yes;
+
+adjustTimeStep  yes;
+
+maxAlphaCo      10;
+
+maxCo           15;
+
+maxDeltaT       0.02;
+
+functions
+{
+
+    forces
+    {
+        type            forces;
+        libs            ("libforces.so");
+        patches         (hull);
+        rhoInf          998.8;
+        log             on;
+        writeControl    timeStep;
+        writeInterval   1;
+        CofR            (2.929541 0 0.2);
+    }
+
+    // sixDoFRigidBodyState // error: Attempt to cast type dynamicOversetFvMesh to type dynamicMotionSolverFvMesh
+    // // From To& Foam::refCast(From&) [with To = const Foam::dynamicMotionSolverFvMesh; From = const Foam::objectRegistry]
+    // // in file /home/mol/openfoam/OpenFOAM-com/src/OpenFOAM/lnInclude/typeInfo.H at line 139.
+    // {
+    //     type           sixDoFRigidBodyState;
+    //     libs           (sixDoFRigidBodyState);
+    //     // patches        (hull);
+    //     angleFormat    degrees;
+    // }
+
+}
+
+
+// ************************************************************************* //

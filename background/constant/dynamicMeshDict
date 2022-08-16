@@ -1,0 +1,101 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2206                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      dynamicMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dynamicFvMesh       dynamicOversetFvMesh;
+
+solvers
+{
+    // VF
+    // {
+    //     motionSolverLibs (libfvMotionSolvers);
+    //     motionSolver            solidBody;
+    //     solidBodyMotionFunction drivenLinearMotion;
+    //     cellSet                 c0;
+    //     cOfGdisplacement        CofG;
+    // }
+
+    boat_propeller
+    {
+        motionSolverLibs    (librigidBodyMeshMotion);
+        motionSolver         rigidBodyMotion;
+
+        report              on;
+        cellSet             c1;
+        // cOfGdisplacement    CofG;
+        // bodyIdCofG      1;
+
+        solver
+        {
+            type Newmark;
+        }
+
+        accelerationRelaxation 0.8;
+        accelerationDamping    0.9;
+        nIter   3;
+
+        bodies
+        {
+            hull
+            {
+                type            rigidBody;
+                parent          root;
+                mass            412.73;
+
+                centreOfMass    (0 0 0);
+                // centreOfMass    (2.929541 0 0.2);
+                inertia         (40 0 0 921 0 921);
+                // Transformation tensor and centre of rotation
+                transform       (1 0 0 0 1 0 0 0 1)  (2.929541 0 0.2);
+                joint
+                {
+                    type            composite;
+
+                    joints
+                    (
+                        {
+                            type Pz;
+                        }
+                        {
+                            type Ry;
+                        }
+                    );
+                }
+                patches    (hull);
+                innerDistance   100;
+                outerDistance   200;
+            }
+        }
+        restraints
+        {
+            translationDamper
+            {
+                type linearDamper;
+                body hull;
+                coeff 8596;
+            }
+
+            rotationDamper
+            {
+                type sphericalAngularDamper;
+                body hull;
+                coeff 11586;
+            }
+        }
+    }
+}
+
+
+// ************************************************************************* //
