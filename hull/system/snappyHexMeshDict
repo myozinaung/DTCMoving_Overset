@@ -124,6 +124,12 @@ castellatedMeshControls
 
     refinementRegions
     {
+        hull // not included in original settings
+        {
+            mode distance;
+            // levels ((0.05 3) (0.1 2) (0.2 2)); // 3 levels (distance refinement_level)
+            levels ((0.15 1));
+        }
     }
 
 
