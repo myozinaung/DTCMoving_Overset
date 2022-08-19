@@ -37,23 +37,23 @@ boundaryField
         value           $internalField;
     }
 
-    outlet
-    {
-        type            inletOutlet;
-        // value           uniform (0 0 0);
-        // inletValue      uniform (0 0 0 );
-
-        value           $internalField;
-        inletValue      $internalField;
-    }
-
     // outlet
     // {
-    //     type            outletPhaseMeanVelocity;
-    //     alpha           alpha.water;
-    //     Umean           $Umean;
+    //     type            inletOutlet;
+    //     // value           uniform (0 0 0);
+    //     // inletValue      uniform (0 0 0 );
+
     //     value           $internalField;
+    //     inletValue      uniform (0 0 0 );
     // }
+
+    outlet
+    {
+        type            outletPhaseMeanVelocity;
+        alpha           alpha.water;
+        Umean           $Umean;
+        value           $internalField;
+    }
 
     atmosphere
     {
