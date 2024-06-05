@@ -16,42 +16,56 @@ FoamFile
 
 scale   1;
 
+xmin   -26;
+xmax    16;
+
+ymin   -19;
+ymax    0;
+
+zmin   -16;
+z1     -1;
+z2     0.185;
+z3     0.244;
+z4     0.3;
+z5     1.6;
+zmax    4;
+
 vertices
 (
-    (-26 -19 -16)
-    (16 -19 -16)
-    (16 0 -16)
-    (-26 0 -16)
+    ($xmin $ymin $zmin)
+    ($xmax $ymin $zmin)
+    ($xmax $ymax $zmin)
+    ($xmin $ymax $zmin)
 
-    (-26 -19 -1)
-    (16 -19 -1)
-    (16 0 -1)
-    (-26 0 -1)
+    ($xmin $ymin $z1)
+    ($xmax $ymin $z1)
+    ($xmax $ymax $z1)
+    ($xmin $ymax $z1)
 
-    (-26 -19 0.185)
-    (16 -19 0.185)
-    (16 0 0.185)
-    (-26 0 0.185)
+    ($xmin $ymin $z2)
+    ($xmax $ymin $z2)
+    ($xmax $ymax $z2)
+    ($xmin $ymax $z2)
 
-    (-26 -19 0.244)
-    (16 -19 0.244)
-    (16 0 0.244)
-    (-26 0 0.244)
+    ($xmin $ymin $z3)
+    ($xmax $ymin $z3)
+    ($xmax $ymax $z3)
+    ($xmin $ymax $z3)
 
-    (-26 -19 0.3)
-    (16 -19 0.3)
-    (16 0 0.3)
-    (-26 0 0.3)
+    ($xmin $ymin $z4)
+    ($xmax $ymin $z4)
+    ($xmax $ymax $z4)
+    ($xmin $ymax $z4)
 
-    (-26 -19 1.6)
-    (16 -19 1.6)
-    (16 0 1.6)
-    (-26 0 1.6)
+    ($xmin $ymin $z5)
+    ($xmax $ymin $z5)
+    ($xmax $ymax $z5)
+    ($xmin $ymax $z5)
 
-    (-26 -19 4)
-    (16 -19 4)
-    (16 0 4)
-    (-26 0 4)
+    ($xmin $ymin $zmax)
+    ($xmax $ymin $zmax)
+    ($xmax $ymax $zmax)
+    ($xmin $ymax $zmax)
 );
 
 blocks
