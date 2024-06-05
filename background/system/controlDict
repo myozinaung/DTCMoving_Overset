@@ -81,6 +81,24 @@ functions
     //     angleFormat    degrees;
     // }
 
+    // rigidBodyState
+    // {
+    //     type           rigidBodyState;
+    //     libs           ("librigidBodyState.so");
+    //     patches        (hull);
+    //     angleFormat    degrees;
+    // }
+    //     Could not load "librigidBodyState.so"
+    // librigidBodyState.so: cannot open shared object file: No such file or directory
+    // --> FOAM Warning : 
+    // Unknown function type rigidBodyState
+
+    // Valid function types :
+    // 9(forceCoeffs forces patchProbes probes propellerInfo psiReactionThermoMoleFractions rhoReactionThermoMoleFractions sets surfaces)
+    //     From static Foam::autoPtr<Foam::functionObject> Foam::functionObject::New(const Foam::word&, const Foam::Time&, const Foam::dictionary&)
+    //     in file db/functionObjects/functionObject/functionObject.C at line 129.
+    // --> loading function object 'rigidBodyState'
+
 }
 
 
